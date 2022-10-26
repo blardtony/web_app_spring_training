@@ -17,13 +17,14 @@ import org.springframework.stereotype.Component;
 public class ApplicationIdentifierFilter implements Filter {
 
     private final String uuid = UUID.randomUUID().toString();
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-        chain.doFilter(request, response);
         if (response instanceof HttpServletResponse httpServletResponse) {
-            httpServletResponse.addHeader("Instance-Id", uuid);
+            httpServletResponse.setHeader("Instance-Id", uuid);
         }
+        chain.doFilter(request, response);
     }
     
 }
