@@ -13,15 +13,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequestMapping("api/todo")
 public class TodoListController {
 
-    private final List<Todo> todoRepo = new ArrayList<>();
-
+    private final TodoRepository repository;
+    TodoListController(TodoRepository todoRepository) {
+        repository = todoRepository;
+    }
     @GetMapping
-    public Collection <Todo> getTodo() {
-        return todoRepo;
+    public Iterable<TodoEntity> getTodo() {
+        return repository.findAll();
     }
 
     @PostMapping
-    public void addTodo(@RequestBody Todo todo) {
-        todoRepo.add(todo);
+    public void addTodo(@RequestBody TodoEntity todo) {
+        repository.save(todo);
     }
 }
