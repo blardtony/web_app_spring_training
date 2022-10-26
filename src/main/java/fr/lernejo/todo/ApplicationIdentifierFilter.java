@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationIdentifierFilter implements Filter {
 
-    private String uuid =UUID.randomUUID().toString();
+    private final String uuid = UUID.randomUUID().toString();
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
