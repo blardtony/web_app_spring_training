@@ -1,7 +1,4 @@
 package fr.lernejo.todo;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collection;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +14,7 @@ public class TodoListController {
     TodoListController(TodoRepository todoRepository) {
         repository = todoRepository;
     }
+    
     @GetMapping
     public Iterable<TodoEntity> getTodo() {
         return repository.findAll();
